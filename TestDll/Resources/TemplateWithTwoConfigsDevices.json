@@ -1,0 +1,35 @@
+﻿{
+  "defaultlist": [
+    {
+      "Key": "fiscalprinter",
+      "Value": "TREMOL S/M/FP15-CL"
+    }
+  ],
+  "settingsdevices": [
+    {
+      "name": "TREMOL S/M/FP15-CL",
+      "enable": true,
+      "configs": [
+        {
+          "enable": true,
+          "name": "Test01",
+          "type_connect": "serialport",
+          "config": {
+            "portname": "com2",
+            "baudrate": 115200,
+            "parity": 3
+          },
+          "description": "test_01",
+          "autoscan": true,
+          "protocol": "test",
+          "customsettings": [
+            {
+              "Key": "server",
+              "Value": "http://LocalHost:4444/"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
