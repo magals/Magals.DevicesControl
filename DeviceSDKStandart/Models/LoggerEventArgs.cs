@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using System;
 
-namespace Magals.DevicesControl.SDKStandart
+namespace Magals.DevicesControl.SDKStandart.Models
 {
     [Serializable]
     public class LoggerEventArgs : EventArgs

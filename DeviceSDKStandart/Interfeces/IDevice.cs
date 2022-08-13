@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Magals.DevicesControl.SDKStandart.Models;
+using System;
 using System.Collections.Generic;
 
 namespace Magals.DevicesControl.SDKStandart.Interfeces

@@ -1,5 +1,6 @@
 ﻿
 using Magals.DevicesControl.SDKStandart.Enums;
+using Magals.DevicesControl.SDKStandart.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
