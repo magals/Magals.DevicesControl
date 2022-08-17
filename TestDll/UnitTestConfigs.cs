@@ -1,10 +1,5 @@
-
-
-
-using Magals.DevicesControl.Core.Models;
-using Magals.DevicesControl.SDKStandart.Attributes;
-using System.Text.Json;
-using static Magals.DevicesControl.Core.Models.DevicesConfigModel;
+using System.IO;
+using static Magals.DevicesControl.Core.Models.DevicesConfigModel.SettingsDevices;
 
 namespace TestDll
 {
@@ -17,16 +12,6 @@ namespace TestDll
 										LoggerFactory.Create(builder =>
 										{
 											builder.SetMinimumLevel(LogLevel.Trace);
-											builder.AddFile(options =>
-											{
-												options.FileName = "diagnostics-"; // The log file prefixes
-												options.LogDirectory = "Logs"; // The directory to write the logs
-												options.FileSizeLimit = 20 * 1024 * 1024; // The maximum log file size (20MB here)
-												options.FilesPerPeriodicityLimit = 200; // When maximum file size is reached, create a new file, up to a limit of 200 files per periodicity
-												options.Extension = "log"; // The log file extension
-												options.Periodicity = PeriodicityOptions.Daily; // Roll log files hourly instead of daily.
-											});
-
 										});
 
 			logger = loggerFactory.CreateLogger<UnitTestConfigs>();
@@ -36,9 +21,8 @@ namespace TestDll
 		[Fact]
 		public void TestCreateDevicesConfig()
 		{
-			Configure _configure = new Configure(logger);
-			var fileStream = new FileStream(@"Resources\TemplateWithTwoConfigsDevices.json", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
-			_configure.ParseConfig(fileStream);
+			Configure _configure = new Configure(logger, @"Resources\TemplateWithTwoConfigsDevices.json");
+			_configure.ParseConfig();
 
 			_configure.DevicesConfigModel.defaultlist.Count().ShouldBe(1);
 			_configure.DevicesConfigModel.settingsdevices.Count().ShouldBe(1);
@@ -48,9 +32,9 @@ namespace TestDll
 		[Fact]
 		public void TestAddConfigSerialPortSettingsAndSave()
 		{
-			Configure _configure = new Configure(logger);
+			Configure _configure = new Configure(logger, @"temp\default.json");
 
-			var fileStream = new FileStream(@"temp\default.json", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
+		//	var fileStream = new FileStream(@"temp\default.json", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
 			var config = new SettingsDevices.Config
 			{
 				enable = true,
@@ -77,11 +61,10 @@ namespace TestDll
 			_configure.DevicesConfigModel.settingsdevices.First().configs.Count().ShouldBe(1);
 			_configure.DevicesConfigModel.settingsdevices.First().configs.First().Equals(config).ShouldBe(true);
 
-			_configure.SaveConfigs(fileStream);
+			_configure.SaveConfigs();
 
-			Configure _configureCheck = new Configure(logger);
-			fileStream.Position = 0;
-			_configureCheck.ParseConfig(fileStream);
+			Configure _configureCheck = new Configure(logger, @"temp\default.json");
+			_configureCheck.ParseConfig();
 
 			var text = JsonSerializer.Serialize(config, new JsonSerializerOptions()
 			{
@@ -101,9 +84,7 @@ namespace TestDll
 		[Fact]
 		public void TestAddConfigFictionalTypeConnectSettingsAndSave()
 		{
-			Configure _configure = new Configure(logger);
-
-			var fileStream = new FileStream(@"temp\defaultFictionalTypeConnect.json", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
+			Configure _configure = new Configure(logger, @"temp\defaultFictionalTypeConnect.json");
 			var config = new SettingsDevices.Config
 			{
 				enable = true,
@@ -112,7 +93,7 @@ namespace TestDll
 				description = String.Empty,
 				protocol = "test",
 				type_connect = "fictionaltypeconnect",
-				config = new FictionalTypeConnectSettingsAttribute("RunTumeTest"),
+				config = new FictionalTypeConnectSettingsAttribute("RunTimeTest"),
 				customsettings = new List<SettingsDevices.Config.Customsettings>
 				{
 					{
@@ -130,11 +111,10 @@ namespace TestDll
 			_configure.DevicesConfigModel.settingsdevices.First().configs.Count().ShouldBe(1);
 			_configure.DevicesConfigModel.settingsdevices.First().configs.First().Equals(config).ShouldBe(true);
 
-			_configure.SaveConfigs(fileStream);
+			_configure.SaveConfigs();
 
-			Configure _configureCheck = new Configure(logger);
-			fileStream.Position = 0;
-			_configureCheck.ParseConfig(fileStream);
+			Configure _configureCheck = new Configure(logger, @"temp\defaultFictionalTypeConnect.json");
+			_configureCheck.ParseConfig();
 
 			var text = JsonSerializer.Serialize(config, new JsonSerializerOptions()
 			{
@@ -149,6 +129,33 @@ namespace TestDll
 
 			});
 			string.Equals(text, text2).ShouldBe(true);
+		}
+
+		[Fact]
+		public void TestCreateDefaultConfigsByLoadedDriver()
+		{
+			MainLogicDevices _mainlogic = new MainLogicDevices(logger: logger,
+																										     pathconfig: @"temp\TestCreateConfigFileWithConfigs.json");
+
+			_mainlogic.LoadAllDrivers();
+			_mainlogic.CreateIntance();
+
+			Configure _configureCheck = new Configure(logger, @"temp\TestCreateConfigFileWithConfigs.json");
+			_configureCheck.ParseConfig();
+
+			var text = JsonSerializer.Serialize(_mainlogic.Configure.GetConfigsForDevice("FictionalDevice")?.configs.First(), new JsonSerializerOptions()
+			{
+				IgnoreReadOnlyProperties = true,
+				WriteIndented = true
+			});
+			var text2 = JsonSerializer.Serialize(_configureCheck.DevicesConfigModel.settingsdevices.First().configs.First(), new JsonSerializerOptions()
+			{
+				IgnoreReadOnlyProperties = true,
+				WriteIndented = true
+			});
+			string.Equals(text, text2).ShouldBe(true);
+
+			File.Delete(@"temp\TestCreateConfigFileWithConfigs.json");
 		}
 	}
 }

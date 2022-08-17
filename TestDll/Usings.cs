@@ -1,5 +1,10 @@
 global using Xunit;
-global using DevicesNetCore;
 global using Microsoft.Extensions.Logging;
-global using NetEscapades.Extensions.Logging.RollingFile;
 global using Shouldly;
+global using Magals.DevicesControl.SDKStandart.Attributes;
+global using System.Text.Json;
+global using static Magals.DevicesControl.Core.Models.DevicesConfigModel;
+global using Magals.DevicesControl.Core;
+
+global using Magals.DevicesControl.SDKStandart;
+global using Magals.DevicesControl.SDKStandart.Interfeces;

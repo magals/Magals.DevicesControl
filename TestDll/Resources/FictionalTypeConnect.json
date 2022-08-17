@@ -1,0 +1,28 @@
+{
+  "defaultlist": [],
+  "settingsdevices": [
+    {
+      "name": "FictionalDevice",
+      "configs": [
+        {
+          "name": "1_name_config",
+          "enable": true,
+          "type_connect": "fictionaltypeconnect",
+          "config": {
+            "abstractfield": "RunTimeTest"
+          },
+          "protocol": "test",
+          "autoscan": false,
+          "description": "",
+          "customsettings": [
+            {
+              "Key": "key1",
+              "Value": "value1"
+            }
+          ]
+        }
+      ],
+      "enable": true
+    }
+  ]
+}

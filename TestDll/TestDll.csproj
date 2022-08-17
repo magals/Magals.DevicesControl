@@ -11,7 +11,6 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
-    <PackageReference Include="NetEscapades.Extensions.Logging.RollingFile" Version="2.4.1" />
     <PackageReference Include="Shouldly" Version="4.0.3" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
@@ -25,13 +24,20 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DevicesNetCore\Magals.DevicesControl.Core.csproj" />
+    <ProjectReference Include="..\Magals.DevicesControl.Core\Magals.DevicesControl.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Resources\FictionalTypeConnect.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Resources\TemplateWithTwoConfigsDevices.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="&quot;$(DevEnvDir)devenv&quot; &quot;$(SolutionPath)&quot; /Rebuild $(configuration) /project &quot;$(SolutionDir)FictionalDevice\FictionalDevice.csproj&quot;&#xD;&#xA;mkdir $(OutDir)drivers\&#xD;&#xA;copy /Y &quot;$(SolutionDir)&quot;FictionalDevice\bin\Debug\netstandard2.0\FictionalDevice.dll &quot;$(OutDir)drivers\&quot;&#xD;&#xA;echo Pre-Build event: Copy FictionalDevice.dll to folder drivers" />
+  </Target>
 
 </Project>
