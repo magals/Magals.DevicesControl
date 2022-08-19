@@ -21,20 +21,19 @@ namespace TestDll
 		[Fact]
 		public void TestCreateDevicesConfig()
 		{
-			Configure _configure = new Configure(logger, @"Resources\TemplateWithTwoConfigsDevices.json");
+			Configure _configure = new(logger, @"Resources\TemplateSerialportConfig.json");
 			_configure.ParseConfig();
 
-			_configure.DevicesConfigModel.defaultlist.Count().ShouldBe(1);
-			_configure.DevicesConfigModel.settingsdevices.Count().ShouldBe(1);
-			_configure.DevicesConfigModel.settingsdevices.First().configs.Count().ShouldBe(1);
+			_configure.DevicesConfigModel.defaultlist.Count.ShouldBe(1);
+			_configure.DevicesConfigModel.settingsdevices.Count.ShouldBe(1);
+			_configure.DevicesConfigModel.settingsdevices.First().configs.Count.ShouldBe(1);
 		}
 
 		[Fact]
 		public void TestAddConfigSerialPortSettingsAndSave()
 		{
-			Configure _configure = new Configure(logger, @"temp\default.json");
+			Configure _configure = new(logger, @"temp\default.json");
 
-		//	var fileStream = new FileStream(@"temp\default.json", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
 			var config = new SettingsDevices.Config
 			{
 				enable = true,
@@ -57,13 +56,13 @@ namespace TestDll
 			};
 			_configure.AddConfig("temp_device", config);
 
-			_configure.DevicesConfigModel.settingsdevices.Count().ShouldBe(1);
-			_configure.DevicesConfigModel.settingsdevices.First().configs.Count().ShouldBe(1);
+			_configure.DevicesConfigModel.settingsdevices.Count.ShouldBe(1);
+			_configure.DevicesConfigModel.settingsdevices.First().configs.Count.ShouldBe(1);
 			_configure.DevicesConfigModel.settingsdevices.First().configs.First().Equals(config).ShouldBe(true);
 
 			_configure.SaveConfigs();
 
-			Configure _configureCheck = new Configure(logger, @"temp\default.json");
+			Configure _configureCheck = new(logger, @"temp\default.json");
 			_configureCheck.ParseConfig();
 
 			var text = JsonSerializer.Serialize(config, new JsonSerializerOptions()
@@ -82,9 +81,9 @@ namespace TestDll
 		}
 
 		[Fact]
-		public void TestAddConfigFictionalTypeConnectSettingsAndSave()
+		public void TestAdd_and_RemoveConfigFictionalTypeConnectSettingsAndSave()
 		{
-			Configure _configure = new Configure(logger, @"temp\defaultFictionalTypeConnect.json");
+			Configure _configure = new(logger, @"temp\defaultFictionalTypeConnect.json");
 			var config = new SettingsDevices.Config
 			{
 				enable = true,
@@ -107,13 +106,13 @@ namespace TestDll
 			};
 			_configure.AddConfig("temp_device", config);
 
-			_configure.DevicesConfigModel.settingsdevices.Count().ShouldBe(1);
-			_configure.DevicesConfigModel.settingsdevices.First().configs.Count().ShouldBe(1);
+			_configure.DevicesConfigModel.settingsdevices.Count.ShouldBe(1);
+			_configure.DevicesConfigModel.settingsdevices.First().configs.Count.ShouldBe(1);
 			_configure.DevicesConfigModel.settingsdevices.First().configs.First().Equals(config).ShouldBe(true);
 
 			_configure.SaveConfigs();
 
-			Configure _configureCheck = new Configure(logger, @"temp\defaultFictionalTypeConnect.json");
+			Configure _configureCheck = new(logger, @"temp\defaultFictionalTypeConnect.json");
 			_configureCheck.ParseConfig();
 
 			var text = JsonSerializer.Serialize(config, new JsonSerializerOptions()
@@ -129,18 +128,22 @@ namespace TestDll
 
 			});
 			string.Equals(text, text2).ShouldBe(true);
+
+			_configureCheck.RemoveConfig("temp_device", "1_name_config");
+
+			_configureCheck.DevicesConfigModel.settingsdevices.First().configs.Any().ShouldBeFalse();
 		}
 
 		[Fact]
 		public void TestCreateDefaultConfigsByLoadedDriver()
 		{
-			MainLogicDevices _mainlogic = new MainLogicDevices(logger: logger,
-																										     pathconfig: @"temp\TestCreateConfigFileWithConfigs.json");
+			MainLogicDevices _mainlogic = new(logger: logger,
+																										 pathconfig: @"temp\TestCreateConfigFileWithConfigs.json");
 
 			_mainlogic.LoadAllDrivers();
 			_mainlogic.CreateIntance();
 
-			Configure _configureCheck = new Configure(logger, @"temp\TestCreateConfigFileWithConfigs.json");
+			Configure _configureCheck = new(logger, @"temp\TestCreateConfigFileWithConfigs.json");
 			_configureCheck.ParseConfig();
 
 			var text = JsonSerializer.Serialize(_mainlogic.Configure.GetConfigsForDevice("FictionalDevice")?.configs.First(), new JsonSerializerOptions()
@@ -157,5 +160,6 @@ namespace TestDll
 
 			File.Delete(@"temp\TestCreateConfigFileWithConfigs.json");
 		}
+
 	}
 }

@@ -1,5 +1,10 @@
 {
-  "defaultlist": [],
+  "defaultlist": [
+    {
+      "Key": "ifictionaldevice",
+      "Value": "FictionalDevice_1_name_config"
+    }
+  ],
   "settingsdevices": [
     {
       "name": "FictionalDevice",
