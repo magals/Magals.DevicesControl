@@ -1,0 +1,13 @@
+global using Microsoft.Extensions.Logging;
+global using System.Reflection;
+global using System.Reflection.Emit;
+global using System.Runtime.Loader;
+global using Magals.DevicesControl.Core.Models;
+global using Magals.DevicesControl.SDKStandart.Interfeces;
+global using Magals.DevicesControl.SDKStandart.Attributes;
+global using Magals.DevicesControl.SDKStandart.Models;
+global using static Magals.DevicesControl.Core.Models.DevicesConfigModel.SettingsDevices;
+global using static Magals.DevicesControl.Core.Models.DevicesConfigModel;
+global using System.Text.Json;
+global using System.Text.Json.Serialization;
+global using System.ComponentModel.DataAnnotations;
