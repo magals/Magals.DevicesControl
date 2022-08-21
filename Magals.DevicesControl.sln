@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Drivers", "Drivers", "{B120
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FictionalDevice", "FictionalDevice\FictionalDevice.csproj", "{99C987DE-330D-4704-94D4-39F98CAAEF8F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestUI", "TestUI\TestUI.csproj", "{4BEEDBAB-7CE9-46D3-996A-BCCE4BAB051F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestUI", "TestUI\TestUI.csproj", "{4BEEDBAB-7CE9-46D3-996A-BCCE4BAB051F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
