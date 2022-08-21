@@ -1,10 +1,4 @@
-﻿using Magals.DevicesControl.Core.Models;
-using Magals.DevicesControl.SDKStandart.Interfeces;
-using Microsoft.Diagnostics.Runtime;
-using System.Diagnostics;
-using System.Dynamic;
-
-namespace TestDll
+﻿namespace TestDll
 {
 	public class UnitTestInstance
 	{
@@ -23,7 +17,7 @@ namespace TestDll
 		[Fact]
 		public void TestCreateSimpleInstance()
 		{
-			MainLogicDevices _mainlogic = new(logger: logger,
+			InstanceLogicDevices _mainlogic = new(logger: logger,
 				pathconfig: "Resources/FictionalTypeConnect.json");
 			_mainlogic.ParseConfig();
 			_mainlogic.LoadAllDrivers();
@@ -44,7 +38,7 @@ namespace TestDll
 		[Fact]
 		public void TestCreateDefaultInstance()
 		{
-			MainLogicDevices _mainlogic = new(logger: logger,
+			InstanceLogicDevices _mainlogic = new(logger: logger,
 																												 pathconfig: @"Resources\FictionalTypeConnect.json");
 			_mainlogic.ParseConfig();
 			_mainlogic.LoadAllDrivers();
@@ -62,7 +56,7 @@ namespace TestDll
 		[Fact]
 		public void TestGetDefaultFictionalDevice()
 		{
-			MainLogicDevices _mainlogic = new(logger: logger,
+			InstanceLogicDevices _mainlogic = new(logger: logger,
 																										 pathconfig: "Resources/FictionalTypeConnect.json");
 			_mainlogic.ParseConfig();
 			_mainlogic.LoadAllDrivers();
@@ -99,8 +93,8 @@ namespace TestDll
 									{
 										new SettingsDevices.Config.Customsettings
 										{
-											Key = "key1",
-											Value = "value1"
+											key = "key1",
+											value = "value1"
 										}
 									}
 								}
@@ -110,8 +104,8 @@ namespace TestDll
 				}
 			};
 
-			MainLogicDevices _mainlogic = new(logger: logger,
-																										 pathconfig: @"temp\TestChangeConfigByInstance.json");
+			InstanceLogicDevices _mainlogic = new(logger: logger,
+																														pathconfig: @"temp\TestChangeConfigByInstance.json");
 			
 			_mainlogic.Configure.DevicesConfigModel = dcm;
 			_mainlogic.LoadAllDrivers();
@@ -142,6 +136,21 @@ namespace TestDll
 			string.Equals(atr2.abstractfield, "RunTimeChange").ShouldBeTrue();
 
 			File.Delete(@"temp\TestChangeConfigByInstance.json");
+		}
+
+		[Fact]
+		public void TestCallMethodsFictionalDevive()
+		{
+			InstanceLogicDevices _mainlogic = new(logger: logger,
+																														pathconfig: "Resources/FictionalTypeConnect.json");
+			_mainlogic.ParseConfig();
+			_mainlogic.LoadAllDrivers();
+			_mainlogic.CreateIntance();
+
+			var ifd = _mainlogic.GetNameDefaultInstance<IFictionalDevice>();
+
+			var statuses = ifd.GetStatuses();
+			statuses["state"].ShouldBe(true);
 		}
 	}
 }

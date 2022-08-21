@@ -1,6 +1,3 @@
-using System.IO;
-using static Magals.DevicesControl.Core.Models.DevicesConfigModel.SettingsDevices;
-
 namespace TestDll
 {
 	public class UnitTestConfigs
@@ -48,8 +45,8 @@ namespace TestDll
 					{
 						new SettingsDevices.Config.Customsettings
 						{
-							Key = "key1",
-							Value = "value1"
+							key = "key1",
+							value = "value1"
 						}
 					}
 				}
@@ -98,8 +95,8 @@ namespace TestDll
 					{
 						new SettingsDevices.Config.Customsettings
 						{
-							Key = "key1",
-							Value = "value1"
+							key = "key1",
+							value = "value1"
 						}
 					}
 				}
@@ -137,7 +134,7 @@ namespace TestDll
 		[Fact]
 		public void TestCreateDefaultConfigsByLoadedDriver()
 		{
-			MainLogicDevices _mainlogic = new(logger: logger,
+			InstanceLogicDevices _mainlogic = new(logger: logger,
 																										 pathconfig: @"temp\TestCreateConfigFileWithConfigs.json");
 
 			_mainlogic.LoadAllDrivers();

@@ -1,8 +1,8 @@
 ﻿{
   "defaultlist": [
     {
-      "Key": "fiscalprinter",
-      "Value": "TREMOL S/M/FP15-CL"
+      "key": "fiscalprinter",
+      "value": "TREMOL S/M/FP15-CL"
     }
   ],
   "settingsdevices": [
@@ -24,8 +24,8 @@
           "protocol": "test",
           "customsettings": [
             {
-              "Key": "server",
-              "Value": "http://LocalHost:4444/"
+              "key": "server",
+              "value": "http://LocalHost:4444/"
             }
           ]
         }

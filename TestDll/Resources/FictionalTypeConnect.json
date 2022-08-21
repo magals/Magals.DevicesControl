@@ -1,8 +1,8 @@
 {
   "defaultlist": [
     {
-      "Key": "ifictionaldevice",
-      "Value": "FictionalDevice_1_name_config"
+      "key": "ifictionaldevice",
+      "value": "FictionalDevice_1_name_config"
     }
   ],
   "settingsdevices": [
@@ -21,8 +21,8 @@
           "description": "",
           "customsettings": [
             {
-              "Key": "key1",
-              "Value": "value1"
+              "key": "key1",
+              "value": "value1"
             }
           ]
         }
