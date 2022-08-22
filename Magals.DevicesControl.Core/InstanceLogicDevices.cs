@@ -335,7 +335,7 @@
 			}
 		}
 
-		private void CreateIntanceForConfig(Type type, Config config)
+		public void CreateIntanceForConfig(Type type, Config config)
 		{
 			var uniqueIdentifier = $"{RemoveSpecChars(type.Name)}_{RemoveSpecChars(config.name)}";
 			var assemblyName = new AssemblyName(uniqueIdentifier);
