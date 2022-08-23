@@ -24,8 +24,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Magals.DevicesControl.Core\Magals.DevicesControl.Core.csproj" />
     <ProjectReference Include="..\InternetThings\InternetThings.csproj" />
-    <ProjectReference Include="..\Magals.DevicesControl.Core\Magals.DevicesControl.Core.csproj" />
   </ItemGroup>
 
 </Project>

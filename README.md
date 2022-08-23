@@ -1,1 +1,1 @@
-# Magals.DriversControl
+# Magals.DeviceControl

@@ -38,7 +38,8 @@ namespace InternetThings.T0
 
 		public bool Connect()
 		{
-			return true;
+			var sds = client?.WeatherforecastAsync().Result;
+			return sds.Any();
 		}
 
 		public void SendCommand(string message)

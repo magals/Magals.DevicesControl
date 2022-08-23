@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Magals.DevicesControl.SDKStandart\Magals.DevicesControl.SDKStandart.csproj" />
+    <ProjectReference Include="..\..\src\Magals.DevicesControl.SDKStandart\Magals.DevicesControl.SDKStandart.csproj" />
   </ItemGroup>
 
 </Project>

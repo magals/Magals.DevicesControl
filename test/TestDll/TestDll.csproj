@@ -27,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Magals.DevicesControl.Core\Magals.DevicesControl.Core.csproj" />
+    <ProjectReference Include="..\..\src\Magals.DevicesControl.Core\Magals.DevicesControl.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -40,7 +40,7 @@
   </ItemGroup>
 
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="&quot;$(DevEnvDir)devenv&quot; &quot;$(SolutionPath)&quot; /Rebuild $(configuration) /project &quot;$(SolutionDir)FictionalDevice\FictionalDevice.csproj&quot;&#xD;&#xA;mkdir $(OutDir)drivers\&#xD;&#xA;copy /Y &quot;$(SolutionDir)&quot;FictionalDevice\bin\Debug\netstandard2.0\FictionalDevice.dll &quot;$(OutDir)drivers\&quot;&#xD;&#xA;echo Pre-Build event: Copy FictionalDevice.dll to folder drivers" />
+    <Exec Command="&quot;$(DevEnvDir)devenv&quot; &quot;$(SolutionPath)&quot; /Rebuild $(configuration) /project &quot;$(SolutionDir)examples\FictionalDevice\FictionalDevice.csproj&quot;&#xD;&#xA;mkdir $(OutDir)drivers\&#xD;&#xA;copy /Y &quot;$(SolutionDir)&quot;examples\FictionalDevice\bin\Debug\netstandard2.0\FictionalDevice.dll &quot;$(OutDir)drivers\&quot;&#xD;&#xA;echo Pre-Build event: Copy FictionalDevice.dll to folder drivers" />
   </Target>
 
 </Project>

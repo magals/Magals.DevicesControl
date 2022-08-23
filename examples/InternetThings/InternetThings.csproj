@@ -14,11 +14,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Magals.DevicesControl.SDKStandart\Magals.DevicesControl.SDKStandart.csproj" />
+    <Folder Include="T0\Tests\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="T0\Tests\" />
+    <ProjectReference Include="..\..\src\Magals.DevicesControl.SDKStandart\Magals.DevicesControl.SDKStandart.csproj" />
   </ItemGroup>
 
 </Project>
