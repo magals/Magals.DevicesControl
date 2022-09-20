@@ -2,7 +2,7 @@ namespace TestDll
 {
 	public class UnitTestConfigs
 	{
-		static ILogger? logger;
+		static ILogger<InstanceLogicDevices>? logger;
 		public UnitTestConfigs()
 		{
 			ILoggerFactory loggerFactory =
@@ -11,7 +11,7 @@ namespace TestDll
 											builder.SetMinimumLevel(LogLevel.Trace);
 										});
 
-			logger = loggerFactory.CreateLogger<UnitTestConfigs>();
+			logger = loggerFactory.CreateLogger<InstanceLogicDevices>();
 			Directory.CreateDirectory(@"temp");
 		}
 

@@ -5,7 +5,7 @@
 	/// </summary>
 	public sealed class InstanceLogicDevices : IDisposable
 	{
-		private readonly ILogger? logger;
+		private ILogger? logger;
 		private readonly string pathfolderdrivers;
 
 		private bool _createDefaultSettings = false;
@@ -23,13 +23,12 @@
 
 		public InstanceLogicDevices(string pathconfig = "DriversConfig.json", 
 														string pathfolderdrivers = "drivers", 
-														ILogger? logger = null)
+														ILogger<InstanceLogicDevices>? logger = null)
 		{
 			try
 			{
 				_configure = new Configure(logger, pathconfig);
 				this.logger = logger;
-
 				if (!Directory.Exists(pathfolderdrivers))
 				{
 					Directory.CreateDirectory(pathfolderdrivers);
@@ -57,6 +56,11 @@
 			}
 
 			this.pathfolderdrivers = pathfolderdrivers;
+		}
+
+		public void AddILogger(ILogger? logger)
+		{
+			this.logger = logger;
 		}
 
 		public void ParseConfig()

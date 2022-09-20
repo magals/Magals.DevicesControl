@@ -2,7 +2,7 @@
 {
 	public class UnitTestInstance
 	{
-		static ILogger? logger;
+		static ILogger<InstanceLogicDevices>? logger;
 		public UnitTestInstance()
 		{
 			ILoggerFactory loggerFactory =
@@ -11,7 +11,7 @@
 											builder.SetMinimumLevel(LogLevel.Trace);
 										});
 
-			logger = loggerFactory.CreateLogger<UnitTestConfigs>();
+			logger = loggerFactory.CreateLogger<InstanceLogicDevices>();
 		}
 
 		[Fact]
