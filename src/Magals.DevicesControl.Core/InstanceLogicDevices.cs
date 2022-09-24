@@ -318,6 +318,7 @@
 
 		public Type[] GetAllTypeSettings() => Configure.GetNameAllCustomAttributes()
 														 .Select((x) => x.Value.AsType())
+														 .Where(x => x.Name.IndexOf("CustomSettings") == -1)
 														 .ToArray();
 
 		public Type[] GetAllDeviceRoles() => _configure.GetAllDeviceRoles();
