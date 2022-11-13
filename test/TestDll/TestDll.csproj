@@ -34,13 +34,16 @@
     <None Update="Resources\FictionalTypeConnect.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Resources\LedDeviceConfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Resources\TemplateSerialportConfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="&quot;$(DevEnvDir)devenv&quot; &quot;$(SolutionPath)&quot; /Rebuild $(configuration) /project &quot;$(SolutionDir)examples\FictionalDevice\FictionalDevice.csproj&quot;&#xD;&#xA;mkdir $(OutDir)drivers\&#xD;&#xA;copy /Y &quot;$(SolutionDir)&quot;examples\FictionalDevice\bin\Debug\netstandard2.0\FictionalDevice.dll &quot;$(OutDir)drivers\&quot;&#xD;&#xA;echo Pre-Build event: Copy FictionalDevice.dll to folder drivers" />
+    <Exec Command="mkdir $(OutDir)drivers\&#xD;&#xA;&#xD;&#xA;&quot;$(DevEnvDir)devenv&quot; &quot;$(SolutionPath)&quot; /Rebuild $(configuration) /project &quot;$(SolutionDir)examples\FictionalDevice\FictionalDevice.csproj&quot;&#xD;&#xA;copy /Y &quot;$(SolutionDir)&quot;examples\FictionalDevice\bin\Debug\netstandard2.0\FictionalDevice.dll &quot;$(OutDir)drivers\&quot;&#xD;&#xA;echo Pre-Build event: Copy FictionalDevice.dll to folder drivers&#xD;&#xA;&#xD;&#xA;&quot;$(DevEnvDir)devenv&quot; &quot;$(SolutionPath)&quot; /Rebuild $(configuration) /project &quot;$(SolutionDir)\LedDevice\LedDevice.csproj&quot;&#xD;&#xA;copy /Y &quot;$(SolutionDir)&quot;\LedDevice\bin\Debug\netstandard2.0\LedDevice.dll &quot;$(OutDir)drivers\&quot;&#xD;&#xA;echo Pre-Build event: Copy LedDevice.dll to folder drivers" />
   </Target>
 
 </Project>

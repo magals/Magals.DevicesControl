@@ -1,0 +1,29 @@
+{
+  "defaultlist": [
+    {
+      "key": "ILed",
+      "value": "Led_1_name_config"
+    }
+  ],
+  "settingsdevices": [
+    {
+      "name": "Led",
+      "configs": [
+        {
+          "name": "1_name_config",
+          "enable": true,
+          "type_connect": "gpio",
+          "config": {
+            "outputLow": [ 21 ]
+          },
+          "protocol": "",
+          "autoscan": false,
+          "description": "",
+          "customsettings": [
+          ]
+        }
+      ],
+      "enable": true
+    }
+  ]
+}
