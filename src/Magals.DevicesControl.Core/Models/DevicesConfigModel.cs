@@ -96,7 +96,9 @@
 									case JsonValueKind.Object:
 										break;
 									case JsonValueKind.Array:
-										break;
+											valueconfig = jelemtn.Deserialize <int[]>();
+
+                    break;
 									case JsonValueKind.True:
 										break;
 									case JsonValueKind.False:

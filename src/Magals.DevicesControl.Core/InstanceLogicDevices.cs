@@ -99,9 +99,9 @@
 		{
 			try
 			{
-				if(_configure.DevicesConfigModel.defaultlist.Any((x) => x.key == typeof(T).Name.ToLower()))
+				if (_configure.DevicesConfigModel.defaultlist.Any((x) => x.key != null && x.key.ToLower() == typeof(T).Name.ToLower()))
 				{
-					var name = _configure.DevicesConfigModel.defaultlist.First(x => string.Equals(x.key, typeof(T).Name.ToLower()));
+					var name = _configure.DevicesConfigModel.defaultlist.First(x => x.key != null && string.Equals(x.key.ToLower(), typeof(T).Name.ToLower()));
 					return GetAllInstancesByInterface<T>().First(x =>
 					{
 						if(x == null)
