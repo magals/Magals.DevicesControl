@@ -24,7 +24,7 @@ namespace Magals.DevicesControl.SDKStandart.Attributes
       this.outputLow = outputLow;
       this.input = input;
       this.inputPullDown = inputPullDown;
-      this.InputPullUp = InputPullUp;
+      this.inputPullUp = InputPullUp;
 
       FlagDefault = false;
     }
@@ -41,7 +41,7 @@ namespace Magals.DevicesControl.SDKStandart.Attributes
     public int[] inputPullDown { get; set; } = new int[0];
 
     [DataMember]
-    public int[] InputPullUp { get; set; } = new int[0];
+    public int[] inputPullUp { get; set; } = new int[0];
 
   }
 }
