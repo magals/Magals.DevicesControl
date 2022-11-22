@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Magals.DevicesControl.SDKStandart.Interfeces.GPIO
 {
-	internal interface IButton : IDevice
+	public interface IButton : IDevice
 	{
 		void Push();
 	}
