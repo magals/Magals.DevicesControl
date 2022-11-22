@@ -6,6 +6,6 @@ namespace Magals.DevicesControl.SDKStandart.Interfeces.GPIO
 {
 	public interface IButton : IDevice
 	{
-		void Push();
+		event Action ButtonPressDown;
 	}
 }
