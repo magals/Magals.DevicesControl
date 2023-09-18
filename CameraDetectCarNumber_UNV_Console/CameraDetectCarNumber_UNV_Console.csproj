@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CameraDetectCarNumber_UNV\CameraDetectCarNumber_UNV.csproj" />
+    <ProjectReference Include="..\src\Magals.DevicesControl.Core\Magals.DevicesControl.Core.csproj" />
+    <ProjectReference Include="..\src\Magals.DevicesControl.SDKStandart\Magals.DevicesControl.SDKStandart.csproj" />
+  </ItemGroup>
+
+</Project>

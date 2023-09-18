@@ -5,18 +5,17 @@ using Magals.DevicesControl.SDKStandart.Models;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 
 namespace CameraDetectCarNumber_UNV
 {
     [TcpSettings]
     [Driver("Camera_UNV")]
-    public class MainCameraDetectCarNumber : ICameraDetectCarNumber
+    public class MainCameraDetectCarNumber_UNV : ICameraDetectCarNumber
     {
         private readonly TcpSettingsAttribute _tcpSettings;
 
         public bool IsConnected => isConnected;
-        bool isConnected = true;
+        bool isConnected = false;
         private bool _disposedValue;
         public bool EnableAutoScan => false;
 
@@ -24,15 +23,15 @@ namespace CameraDetectCarNumber_UNV
         public event EventHandler<LoggerEventArgs> LogMessage;
         private Driver _driver;
 
-        public MainCameraDetectCarNumber()
+        public MainCameraDetectCarNumber_UNV()
         {
             try
             {
                 _tcpSettings = DeviceConfig.GetSettingsFromAttribute<TcpSettingsAttribute>(this);
-                 if (!_tcpSettings.FlagDefault)
+                if (!_tcpSettings.FlagDefault)
                 {
                     LogMessage?.Invoke(this, new LoggerEventArgs(LogLevel.Information, $"settings tcp setup. ip:{_tcpSettings.ip} port:{_tcpSettings.port}"));
-                    _driver = new Driver(_tcpSettings);
+                    _driver = new Driver(_tcpSettings.ip, _tcpSettings.port);
                 }
             }
             catch (Exception ex)
@@ -50,13 +49,16 @@ namespace CameraDetectCarNumber_UNV
 
         public bool Connect()
         {
+            LogMessage?.Invoke(this, new LoggerEventArgs(LogLevel.Information, "Open port"));
             _driver.StartTcpListener();
             _driver.DetectCarNumber += _driver_DetectCarNumber;
+            isConnected = true;
             return IsConnected;
         }
 
         private void _driver_DetectCarNumber(string obj)
         {
+            LogMessage?.Invoke(this, new LoggerEventArgs(LogLevel.Information, $"DetectCarNumber:{obj}"));
             DetectCarNumber?.Invoke(obj);
         }
 
@@ -68,17 +70,19 @@ namespace CameraDetectCarNumber_UNV
 
         public void Disconnect()
         {
+            LogMessage?.Invoke(this, new LoggerEventArgs(LogLevel.Information, "Disconnect"));
             _driver.StopTcpListener();
+            isConnected = false;
             _driver.DetectCarNumber -= _driver_DetectCarNumber;
         }
 
         public void Dispose()
         {
+            LogMessage?.Invoke(this, new LoggerEventArgs(LogLevel.Information, "Dispose"));
             Dispose(true);
             GC.SuppressFinalize(this);
         }
 
-        // Protected implementation of Dispose pattern.
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposedValue)

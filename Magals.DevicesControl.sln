@@ -33,9 +33,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Internet", "Internet", "{26
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DetectCarNumber", "DetectCarNumber", "{AFEF9C24-E972-4505-8892-7057B2F0E5D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CameraDetectCarNumber_UNV", "CameraDetectCarNumber_UNV\CameraDetectCarNumber_UNV.csproj", "{4C9B53BD-D9C6-4FB7-ADC6-920456065F57}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CameraDetectCarNumber_UNV", "CameraDetectCarNumber_UNV\CameraDetectCarNumber_UNV.csproj", "{4C9B53BD-D9C6-4FB7-ADC6-920456065F57}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CameraDetectCarNumber_UNV", "CameraDetectCarNumber_UNV", "{9C1224AC-329C-4CD7-A0B9-72D1830F6A03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CameraDetectCarNumber_UNV_Console", "CameraDetectCarNumber_UNV_Console\CameraDetectCarNumber_UNV_Console.csproj", "{EB87B383-18AF-42C4-B90F-5F8A8B943860}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -91,6 +93,12 @@ Global
 		{4C9B53BD-D9C6-4FB7-ADC6-920456065F57}.ForTesting|Any CPU.Build.0 = Debug|Any CPU
 		{4C9B53BD-D9C6-4FB7-ADC6-920456065F57}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C9B53BD-D9C6-4FB7-ADC6-920456065F57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB87B383-18AF-42C4-B90F-5F8A8B943860}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB87B383-18AF-42C4-B90F-5F8A8B943860}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB87B383-18AF-42C4-B90F-5F8A8B943860}.ForTesting|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB87B383-18AF-42C4-B90F-5F8A8B943860}.ForTesting|Any CPU.Build.0 = Debug|Any CPU
+		{EB87B383-18AF-42C4-B90F-5F8A8B943860}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB87B383-18AF-42C4-B90F-5F8A8B943860}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -109,6 +117,7 @@ Global
 		{AFEF9C24-E972-4505-8892-7057B2F0E5D5} = {26E47824-0BAC-4D4D-B95D-CBB1AFBA8433}
 		{4C9B53BD-D9C6-4FB7-ADC6-920456065F57} = {9C1224AC-329C-4CD7-A0B9-72D1830F6A03}
 		{9C1224AC-329C-4CD7-A0B9-72D1830F6A03} = {AFEF9C24-E972-4505-8892-7057B2F0E5D5}
+		{EB87B383-18AF-42C4-B90F-5F8A8B943860} = {9C1224AC-329C-4CD7-A0B9-72D1830F6A03}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7C14F8D8-1CB4-49DD-9F5A-4AA3F6F588B7}

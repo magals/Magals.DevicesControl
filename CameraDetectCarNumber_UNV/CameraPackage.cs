@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CameraDetectCarNumber_UNV.Enums;
+using System;
 using System.Linq;
 using System.Text;
-using CameraDetectCarNumber_UNV.Enums;
 
 namespace CameraDetectCarNumber_UNV
 {
