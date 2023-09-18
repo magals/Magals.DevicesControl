@@ -425,10 +425,10 @@
 
 		
 		private List<T> GetAllInstancesByInterface<T>() => _instances.Where(h => h.GetType()
-																																									   .GetInterfaces()
-																																										 .Contains(typeof(T)))
-																																 .Cast<T>()
-																																 .ToList();
+																	 .GetInterfaces()
+																     .Contains(typeof(T)))
+																	 .Cast<T>()
+																	 .ToList();
 
 		
 
