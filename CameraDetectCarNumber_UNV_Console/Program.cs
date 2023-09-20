@@ -1,5 +1,6 @@
 ﻿using CameraDetectCarNumber_UNV;
 using Magals.DevicesControl.Core;
+using Magals.DevicesControl.Core.Models;
 using Magals.DevicesControl.SDKStandart.Attributes;
 using Magals.DevicesControl.SDKStandart.Interfeces;
 using Microsoft.Extensions.Logging;
@@ -26,7 +27,26 @@ var dcm = new SettingsDevices.Config
     config = new TcpSettingsAttribute("192.168.88.206", 3333)
 };
 
-InstanceLogicDevices _mainlogic = new();
+var dcma = new DevicesConfigModel
+{
+    settingsdevices = new List<SettingsDevices>
+                {
+                    new SettingsDevices
+                    {
+                        name = "MainCameraDetectCarNumber_UNV",
+                        enable = true,
+                        configs = new()
+                        {
+                            dcm
+                        }
+                    }
+                }
+};
+
+InstanceLogicDevices _mainlogic = new(pathconfig: @"MainCameraDetectCarNumber_UNV.json");
+_mainlogic.Configure.DevicesConfigModel = dcma;
+_mainlogic.Configure.SaveConfigs();
+
 _mainlogic.CreateIntanceForConfig(typeof(MainCameraDetectCarNumber_UNV), dcm);
 cameraDetectCarNumber = _mainlogic.GetInstanceByNameConfig<ICameraDetectCarNumber>("Camera_UNV", "1_name_config");
 cameraDetectCarNumber.LogMessage += CameraDetectCarNumber_LogMessage;

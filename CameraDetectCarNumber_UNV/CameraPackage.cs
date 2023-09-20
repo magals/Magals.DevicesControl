@@ -72,7 +72,7 @@ namespace CameraDetectCarNumber_UNV
             result.UnknowType2 = array.Skip(12).Take(4).ToArray();
             result.Data = array.Skip(16).Take(result.LenPackage - 8).ToArray();
 
-            result.ViewData = Encoding.ASCII.GetString(result.Data);
+            result.ViewData = Encoding.ASCII.GetString(result.Data.Where(x => x != 0x00).ToArray());
 
             result.CodeResult = CodeResult.DetectCar;
             return result;
