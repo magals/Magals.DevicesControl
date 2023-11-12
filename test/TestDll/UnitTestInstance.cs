@@ -21,7 +21,7 @@
 				pathconfig: "Resources/FictionalTypeConnect.json");
 			_mainlogic.ParseConfig();
 			_mainlogic.LoadAllDrivers();
-			_mainlogic.CreateIntance();
+			_mainlogic.CreateInstance();
 
 			_mainlogic.Instances.Count.ShouldBe(1);
 
@@ -42,7 +42,7 @@
 																												 pathconfig: @"Resources\FictionalTypeConnect.json");
 			_mainlogic.ParseConfig();
 			_mainlogic.LoadAllDrivers();
-			_mainlogic.CreateIntance();
+			_mainlogic.CreateInstance();
 
 			_mainlogic.Instances.Count.ShouldBe(1);
 			var settings = DeviceConfig.GetSettingsFromAttribute<DriverAttribute>(_mainlogic.Instances.First());
@@ -60,7 +60,7 @@
 																										 pathconfig: "Resources/FictionalTypeConnect.json");
 			_mainlogic.ParseConfig();
 			_mainlogic.LoadAllDrivers();
-			_mainlogic.CreateIntance();
+			_mainlogic.CreateInstance();
 
 			var ifd = _mainlogic.GetNameDefaultInstance<IFictionalDevice>();
 			object.Equals(ifd, _mainlogic.GetInstanceByNameConfig<IFictionalDevice>("FictionalDevice", "1_name_config")).ShouldBe(true);
@@ -109,7 +109,7 @@
 			
 			_mainlogic.Configure.DevicesConfigModel = dcm;
 			_mainlogic.LoadAllDrivers();
-			_mainlogic.CreateIntance();
+			_mainlogic.CreateInstance();
 
 			var instance = _mainlogic.GetInstanceByNameConfig<IFictionalDevice>("FictionalDevice", "1_name_config");
 
@@ -145,7 +145,7 @@
 																														pathconfig: "Resources/FictionalTypeConnect.json");
 			_mainlogic.ParseConfig();
 			_mainlogic.LoadAllDrivers();
-			_mainlogic.CreateIntance();
+			_mainlogic.CreateInstance();
 
 			var ifd = _mainlogic.GetNameDefaultInstance<IFictionalDevice>();
 

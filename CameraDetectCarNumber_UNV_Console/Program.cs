@@ -47,7 +47,7 @@ InstanceLogicDevices _mainlogic = new(pathconfig: @"MainCameraDetectCarNumber_UN
 _mainlogic.Configure.DevicesConfigModel = dcma;
 _mainlogic.Configure.SaveConfigs();
 
-_mainlogic.CreateIntanceForConfig(typeof(MainCameraDetectCarNumber_UNV), dcm);
+_mainlogic.CreateInstanceForConfig(typeof(MainCameraDetectCarNumber_UNV), dcm);
 cameraDetectCarNumber = _mainlogic.GetInstanceByNameConfig<ICameraDetectCarNumber>("Camera_UNV", "1_name_config");
 cameraDetectCarNumber.LogMessage += CameraDetectCarNumber_LogMessage;
 cameraDetectCarNumber.Connect();

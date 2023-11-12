@@ -120,7 +120,7 @@
 			}
 		}
 
-		public void CreateIntance()
+		public void CreateInstance()
 		{
 			try
 			{
@@ -140,7 +140,7 @@
 								{
 									foreach (var config in drvcon.configs)
 									{
-										CreateIntanceForConfig(type, config);
+										CreateInstanceForConfig(type, config);
 									}
 								}
 
@@ -290,7 +290,7 @@
 			var device = instance.GetType().GetCustomAttribute(typeof(ConfigNameAttribute));
 			if (device is ConfigNameAttribute result)
 			{
-				return _configure.GetConfigByIncance(result.name);
+				return _configure.GetConfigByInstance(result.name);
 			}
 			throw new InvalidOperationException("Not found instance");
 		}
@@ -330,7 +330,7 @@
 			ArgumentNullException.ThrowIfNull(tempType);
 
 			Instances.Remove((IDevice)instance);
-			CreateIntanceForConfig(tempType, config);
+			CreateInstanceForConfig(tempType, config);
 
 			if (tempType.GetCustomAttribute(typeof(DriverAttribute)) is DriverAttribute driverAttribute)
 			{
@@ -340,7 +340,7 @@
 			}
 		}
 
-		public void CreateIntanceForConfig(Type type, Config config)
+		public void CreateInstanceForConfig(Type type, Config config)
 		{
 			var uniqueIdentifier = $"{RemoveSpecChars(type.Name)}_{RemoveSpecChars(config.name)}";
 			var assemblyName = new AssemblyName(uniqueIdentifier);

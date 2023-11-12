@@ -24,7 +24,7 @@ namespace TestDll
         pathconfig: "Resources/LedDeviceConfig.json");
       _mainlogic.ParseConfig();
       _mainlogic.LoadAllDrivers();
-      _mainlogic.CreateIntance();
+      _mainlogic.CreateInstance();
 
       _mainlogic.Instances.Count.ShouldBe(1);
 
@@ -43,7 +43,7 @@ namespace TestDll
                                                          pathconfig: @"Resources\LedDeviceConfig.json");
       _mainlogic.ParseConfig();
       _mainlogic.LoadAllDrivers();
-      _mainlogic.CreateIntance();
+      _mainlogic.CreateInstance();
 
       _mainlogic.Instances.Count.ShouldBe(1);
       var settings = DeviceConfig.GetSettingsFromAttribute<DriverAttribute>(_mainlogic.Instances.First());
@@ -61,7 +61,7 @@ namespace TestDll
                                                      pathconfig: "Resources/LedDeviceConfig.json");
       _mainlogic.ParseConfig();
       _mainlogic.LoadAllDrivers();
-      _mainlogic.CreateIntance();
+      _mainlogic.CreateInstance();
 
       var ifd = _mainlogic.GetNameDefaultInstance<ILed>();
       object.Equals(ifd, _mainlogic.GetInstanceByNameConfig<ILed>("Led", "1_name_config")).ShouldBe(true);
@@ -110,7 +110,7 @@ namespace TestDll
 
       _mainlogic.Configure.DevicesConfigModel = dcm;
       _mainlogic.LoadAllDrivers();
-      _mainlogic.CreateIntance();
+      _mainlogic.CreateInstance();
 
       var instance = _mainlogic.GetInstanceByNameConfig<ILed>("FictionalDevice", "1_name_config");
 

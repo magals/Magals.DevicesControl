@@ -138,7 +138,7 @@ namespace TestDll
 																										 pathconfig: @"temp\TestCreateConfigFileWithConfigs.json");
 
 			_mainlogic.LoadAllDrivers();
-			_mainlogic.CreateIntance();
+			_mainlogic.CreateInstance();
 
 			Configure _configureCheck = new(logger, @"temp\TestCreateConfigFileWithConfigs.json");
 			_configureCheck.ParseConfig();
