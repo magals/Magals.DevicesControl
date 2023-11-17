@@ -85,7 +85,7 @@
 
 		public static Dictionary<string, TypeInfo> GetNameAllCustomAttributes()
 		{
-			var temp = AppDomain.CurrentDomain.GetAssemblies().First(x => x.GetName().Name == "Magals.DevicesControl.SDKStandart.dll").DefinedTypes
+			var temp = AppDomain.CurrentDomain.GetAssemblies().First(x => x.GetName().Name == "Magals.DevicesControl.SDKStandart").DefinedTypes
 										 .Where(x => x.BaseType == typeof(Attribute) && x.Name.IndexOf("Settings") != -1)
 										 .ToDictionary(x => $"{x.Name}".Replace("SettingsAttribute", string.Empty).ToLower());
 			return temp;
@@ -94,7 +94,7 @@
 
 		public Type[] GetAllDeviceRoles()
 		{
-			var temp = AppDomain.CurrentDomain.GetAssemblies().First(x => x.GetName().Name == "Magals.DevicesControl.SDKStandart.dll").DefinedTypes
+			var temp = AppDomain.CurrentDomain.GetAssemblies().First(x => x.GetName().Name == "Magals.DevicesControl.SDKStandart").DefinedTypes
 													.Where(x => x.ImplementedInterfaces.Any(y => y.Name == typeof(IDevice).Name))
 													.ToArray();
 			return temp;
