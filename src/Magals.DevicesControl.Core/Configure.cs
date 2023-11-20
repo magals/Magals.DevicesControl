@@ -66,7 +66,33 @@
 			}
 		}
 
-		public void SaveConfigs()
+        public void ParseConfig(string json)
+        {
+            try
+            {
+                DevicesConfigModel = JsonSerializer.Deserialize<DevicesConfigModel>(json) ?? new();
+            }
+            catch (Exception ex)
+            {
+                logger?.LogError("Exception:{ex} {Environment.NewLine} Trace:{ex.StackTrace}", ex, Environment.NewLine, ex.StackTrace);
+            }
+        }
+
+        public void SetConfig(List<SettingsDevices>? settingsDevices = null, List<Defaultlist>? defaultlists = null)
+        {
+            try
+            {
+                DevicesConfigModel = new DevicesConfigModel();
+				DevicesConfigModel.settingsdevices = settingsDevices ?? new();
+                DevicesConfigModel.defaultlist = defaultlists ?? new();
+            }
+            catch (Exception ex)
+            {
+                logger?.LogError("Exception:{ex} {Environment.NewLine} Trace:{ex.StackTrace}", ex, Environment.NewLine, ex.StackTrace);
+            }
+        }
+
+        public void SaveConfigs()
 		{
 			using var sw = new StreamWriter(pathFile);
 			var text = JsonSerializer.Serialize(DevicesConfigModel, new JsonSerializerOptions()
