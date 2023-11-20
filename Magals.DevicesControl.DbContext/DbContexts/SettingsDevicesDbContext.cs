@@ -10,7 +10,8 @@ using System.Threading.Tasks;
 namespace Magals.DevicesControl.DbContext.DbContexts;
 public class SettingsDevicesDbContext : Microsoft.EntityFrameworkCore.DbContext
 {
-    public DbSet<ConfigEntity>? ConfigEntities { get; set; }
+    public static string NameSchema { get; set; } = "settingsdevices";
+    public DbSet<ConfigsEntity>? ConfigEntities { get; set; }
     public DbSet<CustomsettingsEntity>? CustomsettingsEntities { get; set; }
     public DbSet<SettingsDevicesEntity>? SettingsDevicesEntities { get; set; }
 
@@ -22,6 +23,6 @@ public class SettingsDevicesDbContext : Microsoft.EntityFrameworkCore.DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.HasDefaultSchema("settingsdevices");
+        modelBuilder.HasDefaultSchema(NameSchema);
     }
 }

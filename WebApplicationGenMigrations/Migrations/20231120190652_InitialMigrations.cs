@@ -22,12 +22,11 @@ namespace WebApplicationGenMigrations.Migrations
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: false),
-                    Enable = table.Column<bool>(type: "boolean", nullable: false),
-                    ConfigEntityId = table.Column<long>(type: "bigint", nullable: false)
+                    Enable = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SettingsDevicesEntities", x => x.Id);
+                    table.PrimaryKey("PK_SettingsDevicesEntities", x => x.Name);
                 });
 
             migrationBuilder.CreateTable(
@@ -39,22 +38,23 @@ namespace WebApplicationGenMigrations.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: false),
                     Enable = table.Column<bool>(type: "boolean", nullable: false),
-                    TypeConnect = table.Column<string>(type: "text", nullable: false),
+                    Type_Connect = table.Column<string>(type: "text", nullable: false),
+                    Config = table.Column<string>(type: "text", nullable: false),
                     Protocol = table.Column<string>(type: "text", nullable: false),
                     Autoscan = table.Column<bool>(type: "boolean", nullable: false),
                     Description = table.Column<string>(type: "text", nullable: false),
-                    CustomsettingsEntityId = table.Column<long>(type: "bigint", nullable: false),
-                    SettingsDevicesEntityId = table.Column<long>(type: "bigint", nullable: true)
+                    SettingsDevicesEntityName = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ConfigEntities", x => x.Id);
+                    table.PrimaryKey("PK_ConfigEntities", x => x.Name);
                     table.ForeignKey(
                         name: "FK_ConfigEntities_SettingsDevicesEntities_SettingsDevicesEntit~",
-                        column: x => x.SettingsDevicesEntityId,
+                        column: x => x.SettingsDevicesEntityName,
                         principalSchema: "settingsdevices",
                         principalTable: "SettingsDevicesEntities",
-                        principalColumn: "Id");
+                        principalColumn: "Name",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -66,30 +66,30 @@ namespace WebApplicationGenMigrations.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Key = table.Column<string>(type: "text", nullable: false),
                     Value = table.Column<string>(type: "text", nullable: false),
-                    ConfigEntityId = table.Column<long>(type: "bigint", nullable: true)
+                    ConfigsName = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CustomsettingsEntities", x => x.Id);
+                    table.PrimaryKey("PK_CustomsettingsEntities", x => x.Key);
                     table.ForeignKey(
-                        name: "FK_CustomsettingsEntities_ConfigEntities_ConfigEntityId",
-                        column: x => x.ConfigEntityId,
+                        name: "FK_CustomsettingsEntities_ConfigEntities_ConfigsName",
+                        column: x => x.ConfigsName,
                         principalSchema: "settingsdevices",
                         principalTable: "ConfigEntities",
-                        principalColumn: "Id");
+                        principalColumn: "Name");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ConfigEntities_SettingsDevicesEntityId",
+                name: "IX_ConfigEntities_SettingsDevicesEntityName",
                 schema: "settingsdevices",
                 table: "ConfigEntities",
-                column: "SettingsDevicesEntityId");
+                column: "SettingsDevicesEntityName");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CustomsettingsEntities_ConfigEntityId",
+                name: "IX_CustomsettingsEntities_ConfigsName",
                 schema: "settingsdevices",
                 table: "CustomsettingsEntities",
-                column: "ConfigEntityId");
+                column: "ConfigsName");
         }
 
         /// <inheritdoc />

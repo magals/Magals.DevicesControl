@@ -33,7 +33,7 @@ public class SettingsDevicesRepository
         try
         {
             ArgumentNullException.ThrowIfNull(settingsDevicesDbContext.SettingsDevicesEntities);
-            return await settingsDevicesDbContext.SettingsDevicesEntities.ToListAsync();
+            return await settingsDevicesDbContext.SettingsDevicesEntities.Include(x => x.Configs).ThenInclude(y => y.Customsettings).ToListAsync();
         }
         catch (Exception ex)
         {

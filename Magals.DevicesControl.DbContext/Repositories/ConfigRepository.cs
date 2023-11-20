@@ -18,9 +18,14 @@ public class ConfigRepository
         this.settingsDevicesDbContext = settingsDevicesDbContext;
     }
 
-    public async Task Add(string namedevice, ConfigEntity configEntity)
+    public async Task Add(string namedevice, ConfigsEntity configEntity)
     {
+        ArgumentNullException.ThrowIfNull(settingsDevicesDbContext.SettingsDevicesEntities);
         ArgumentNullException.ThrowIfNull(settingsDevicesDbContext.ConfigEntities);
+
+        var sd = settingsDevicesDbContext.SettingsDevicesEntities.First(x => string.Equals(x.Name, namedevice));
+
+        configEntity.SettingsDevicesEntity = sd;
 
         settingsDevicesDbContext.ConfigEntities.Add(configEntity);
         await settingsDevicesDbContext.SaveChangesAsync();

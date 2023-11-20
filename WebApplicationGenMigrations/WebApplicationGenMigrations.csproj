@@ -21,4 +21,8 @@
     <ProjectReference Include="..\Magals.DevicesControl.DbContext\Magals.DevicesControl.DbContext.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>
