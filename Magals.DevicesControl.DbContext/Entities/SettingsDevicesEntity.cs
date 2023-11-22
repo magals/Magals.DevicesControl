@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 namespace Magals.DevicesControl.DbContext.Entities;
 public class SettingsDevicesEntity : Entity
 {
-    [Key]
     [Required]
     public required string Name { get; set; }
 

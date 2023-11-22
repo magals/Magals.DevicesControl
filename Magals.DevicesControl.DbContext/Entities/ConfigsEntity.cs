@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 namespace Magals.DevicesControl.DbContext.Entities;
 public class ConfigsEntity : Entity
 {
-    [Key]
     [Required]
     public required string Name { get; set; }
 
@@ -31,6 +30,7 @@ public class ConfigsEntity : Entity
     public string ?Description { get; set; }
 
 
+    public string SettingsDevicesEntityName { get; set; } = default!;
     public SettingsDevicesEntity SettingsDevicesEntity { get; set; } = default!;
 
     public ICollection<CustomsettingsEntity> Customsettings { get; set; } = default!;

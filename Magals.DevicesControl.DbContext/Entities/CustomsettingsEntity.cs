@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 namespace Magals.DevicesControl.DbContext.Entities;
 public class CustomsettingsEntity : Entity
 {
-    [Key]
     [Required]
     public required string Key { get; init; }
 
     [Required]
     public required string Value { get; init; }
 
+    public long ConfigsId { get; set; }
     public ConfigsEntity Configs { get; set; } = default!;
 }

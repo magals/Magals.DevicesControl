@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Magals.DevicesControl.DbContext.DTOs;
 public class CustomsettingsDTO
 {
-    public required string Key { get; init; }
+    public required string key { get; init; }
 
-    public required string Value { get; init; }
+    public required string value { get; init; }
 }

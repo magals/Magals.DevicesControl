@@ -24,8 +24,12 @@ namespace WebApplicationGenMigrations.Migrations
 
             modelBuilder.Entity("Magals.DevicesControl.DbContext.Entities.ConfigsEntity", b =>
                 {
-                    b.Property<string>("Name")
-                        .HasColumnType("text");
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasColumnOrder(0);
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<bool>("Autoscan")
                         .HasColumnType("boolean");
@@ -41,12 +45,9 @@ namespace WebApplicationGenMigrations.Migrations
                     b.Property<bool>("Enable")
                         .HasColumnType("boolean");
 
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasColumnOrder(0);
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("Protocol")
                         .IsRequired()
@@ -60,7 +61,7 @@ namespace WebApplicationGenMigrations.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.HasKey("Name");
+                    b.HasKey("Id");
 
                     b.HasIndex("SettingsDevicesEntityName");
 
@@ -69,12 +70,6 @@ namespace WebApplicationGenMigrations.Migrations
 
             modelBuilder.Entity("Magals.DevicesControl.DbContext.Entities.CustomsettingsEntity", b =>
                 {
-                    b.Property<string>("Key")
-                        .HasColumnType("text");
-
-                    b.Property<string>("ConfigsName")
-                        .HasColumnType("text");
-
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
@@ -82,25 +77,26 @@ namespace WebApplicationGenMigrations.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
+                    b.Property<long>("ConfigsId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Key")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Value")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.HasKey("Key");
+                    b.HasKey("Id");
 
-                    b.HasIndex("ConfigsName");
+                    b.HasIndex("ConfigsId");
 
                     b.ToTable("CustomsettingsEntities", "settingsdevices");
                 });
 
             modelBuilder.Entity("Magals.DevicesControl.DbContext.Entities.SettingsDevicesEntity", b =>
                 {
-                    b.Property<string>("Name")
-                        .HasColumnType("text");
-
-                    b.Property<bool>("Enable")
-                        .HasColumnType("boolean");
-
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
@@ -108,7 +104,14 @@ namespace WebApplicationGenMigrations.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.HasKey("Name");
+                    b.Property<bool>("Enable")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
 
                     b.ToTable("SettingsDevicesEntities", "settingsdevices");
                 });
@@ -118,6 +121,7 @@ namespace WebApplicationGenMigrations.Migrations
                     b.HasOne("Magals.DevicesControl.DbContext.Entities.SettingsDevicesEntity", "SettingsDevicesEntity")
                         .WithMany("Configs")
                         .HasForeignKey("SettingsDevicesEntityName")
+                        .HasPrincipalKey("Name")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -128,7 +132,9 @@ namespace WebApplicationGenMigrations.Migrations
                 {
                     b.HasOne("Magals.DevicesControl.DbContext.Entities.ConfigsEntity", "Configs")
                         .WithMany("Customsettings")
-                        .HasForeignKey("ConfigsName");
+                        .HasForeignKey("ConfigsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Configs");
                 });

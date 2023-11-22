@@ -24,5 +24,20 @@ public class SettingsDevicesDbContext : Microsoft.EntityFrameworkCore.DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.HasDefaultSchema(NameSchema);
+
+        modelBuilder.Entity<SettingsDevicesEntity>()
+            .HasMany(e => e.Configs)
+            .WithOne(e => e.SettingsDevicesEntity)
+            .HasForeignKey(e => e.SettingsDevicesEntityName)
+            .HasPrincipalKey(e => e.Name);
+        
+        modelBuilder.Entity<ConfigsEntity>()
+            .HasMany(e => e.Customsettings)
+            .WithOne(e => e.Configs)
+            .HasForeignKey(e => e.ConfigsId)
+            .HasPrincipalKey(e => e.Id);
+
+        modelBuilder.Entity<CustomsettingsEntity>()
+            .HasKey(e => e.Id);
     }
 }

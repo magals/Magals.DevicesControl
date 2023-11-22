@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Magals.DevicesControl.DbContext.Entities;
 public class Entity
-{
+{ 
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Column(Order = 0)]
     public long Id { get; set; }

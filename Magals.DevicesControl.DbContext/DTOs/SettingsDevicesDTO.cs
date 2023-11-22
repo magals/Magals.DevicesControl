@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 namespace Magals.DevicesControl.DbContext.DTOs;
 public class SettingsDevicesDTO
 {
-    public required string Name { get; set; }
+    public required string name { get; set; }
 
-    public required bool Enable { get; set; }
+    public required bool enable { get; set; }
 
-    public ICollection<ConfigsDTO> Configs { get; set; } = default!;
+    public ICollection<ConfigsDTO> configs { get; set; } = default!;
 }
