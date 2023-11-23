@@ -22,8 +22,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<SettingsDevicesRepository>();
-builder.Services.AddScoped<ConfigRepository>();
-builder.Services.AddScoped<CustomsettingsRepository>();
 
 
 builder.Services.AddSingleton<InstanceLogicDevices>();
@@ -75,7 +73,7 @@ app.MapPost("/SettingsDevicesRepository", async (SettingsDevicesRepository sdr, 
     await sdr.Add(Converts.ConvertDTOtoEntity<SettingsDevicesEntity>(sde));
 }).WithOpenApi();
 
-app.MapPost("/ConfigRepository", async (ConfigRepository cr,  string Namedevice, ConfigsDTO cdto) =>
+app.MapPost("/ConfigRepository", async (SettingsDevicesRepository cr,  string Namedevice, ConfigsDTO cdto) =>
 {/*
     await cr.Add(Namedevice, new ConfigsEntity
     {
@@ -88,7 +86,7 @@ app.MapPost("/ConfigRepository", async (ConfigRepository cr,  string Namedevice,
         Description = cdto.description,
 
     });*/
-    await cr.Add(Namedevice, Converts.ConvertDTOtoEntity<ConfigsEntity>(cdto));
+    await cr.AddConfig(Namedevice, Converts.ConvertDTOtoEntity<ConfigsEntity>(cdto));
 }).WithOpenApi();
 app.MapGet("/SettingsDevicesRepository/GetAllSettings", async(SettingsDevicesRepository sdr) =>
 {

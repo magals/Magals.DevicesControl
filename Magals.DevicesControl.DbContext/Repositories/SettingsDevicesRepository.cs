@@ -55,4 +55,39 @@ public class SettingsDevicesRepository
             throw;
         }
     }
+
+    public async Task AddConfig(string namedevice, ConfigsEntity configEntity)
+    {
+        ArgumentNullException.ThrowIfNull(settingsDevicesDbContext.SettingsDevicesEntities);
+        ArgumentNullException.ThrowIfNull(settingsDevicesDbContext.ConfigEntities);
+
+        var sd = settingsDevicesDbContext.SettingsDevicesEntities.First(x => string.Equals(x.Name, namedevice));
+
+        configEntity.SettingsDevicesEntity = sd;
+
+        settingsDevicesDbContext.ConfigEntities.Add(configEntity);
+        await settingsDevicesDbContext.SaveChangesAsync();
+    }
+
+    public void AddCustomsetting(string namedevice, string nameconfig, CustomsettingsEntity customsettingsEntity)
+    {
+        ArgumentNullException.ThrowIfNull(settingsDevicesDbContext.CustomsettingsEntities);
+
+        settingsDevicesDbContext.CustomsettingsEntities.Add(customsettingsEntity);
+        settingsDevicesDbContext.SaveChanges();
+    }
+
+    public async Task<ICollection<CustomsettingsEntity>> GetAllCustomsettings()
+    {
+        try
+        {
+            ArgumentNullException.ThrowIfNull(settingsDevicesDbContext.CustomsettingsEntities);
+            return await settingsDevicesDbContext.CustomsettingsEntities.ToListAsync();
+        }
+        catch (Exception ex)
+        {
+            logger.LogCritical(ex.ToString());
+            throw;
+        }
+    }
 }

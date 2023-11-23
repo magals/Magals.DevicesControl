@@ -1,0 +1,9 @@
+﻿@WebApplicationGenMigrations_HostAddress = http://localhost:5017
+
+GET {{WebApplicationGenMigrations_HostAddress}}/SettingsDevicesRepository/GetAllSettings
+
+###
+
+POST {{WebApplicationGenMigrations_HostAddress}}/SettingsDevicesRepository
+
+###
