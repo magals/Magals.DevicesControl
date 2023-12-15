@@ -7,5 +7,6 @@ namespace Magals.DevicesControl.SDKStandart.Interfeces.GPIO
 	public interface IButton : IDevice
 	{
 		event Action ButtonPressDown;
-	}
+		event Action ButtonPressUp;
+    }
 }

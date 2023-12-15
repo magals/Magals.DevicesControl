@@ -48,6 +48,7 @@ var dcma = new DevicesConfigModel
 
 InstanceLogicDevices _mainlogic = new(pathconfig: @"RGBLed_L298N.json");
 _mainlogic.Configure.DevicesConfigModel = dcma;
+_mainlogic.Configure.SaveConfigs();
 
 _mainlogic.CreateInstanceForConfig(typeof(RGBLed_L298N), dcm);
 rGBLed = _mainlogic.GetInstanceByNameConfig<IRGBLed>("RGBLed_L298N", "1_name_config");
