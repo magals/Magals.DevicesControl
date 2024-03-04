@@ -441,7 +441,15 @@
 				_disposedValue = true;
 				foreach (var item in Instances)
 				{
-					item.Dispose();
+					try
+					{
+                        item.Dispose();
+                    }
+					catch (Exception ex)
+					{
+                        logger?.LogCritical(ex, "Message:{ex.message}{Environment.NewLine}", ex.ToString(), Environment.NewLine);
+                    }
+					
 				}
 			}
 		}
