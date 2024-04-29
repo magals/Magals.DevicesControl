@@ -5,7 +5,7 @@ namespace Magals.DevicesControl.SDKStandart.Interfeces
 {
     public interface IBankTerminal : IDevice
     {
-        void Sale(long amount, string name_currency);
+        void Payment(long amount, int code_currency);
         void Refund(long amount);
         void Cancel(long amount);
         void CancelACD(long amount);

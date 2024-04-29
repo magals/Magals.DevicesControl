@@ -3,7 +3,7 @@
     public enum BankTerminalCommand
     {
         None = 0,
-        Sale = 1,
+        Payment = 1,
         Refund = 2,
         Cancel = 3,
         CancelACD = 4,
