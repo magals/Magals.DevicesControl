@@ -1,17 +1,74 @@
 ﻿
 namespace Magals.DevicesControl.SDKStandart.Enums
 {
+    /// <summary>
+    /// Payment types
+    /// </summary>
     public enum TypePayments
     {
-        None = -1,
-        Payment_0 = 0,
-        Payment_1 = 1,
-        Payment_2 = 2,
-        Payment_3 = 3,
-        Payment_4 = 4,
-        Payment_5 = 5,
-        Payment_6 = 6,
-        Payment_7 = 7,
-        Payment_8 = 8
+        /// <summary>
+        /// Cash
+        /// </summary>
+        CARD,
+        /// <summary>
+        /// Bank card.
+        /// </summary>
+        VOUCHER,
+        /// <summary>
+        /// In credit.
+        /// </summary>
+        CEC,
+        /// <summary>
+        /// Payment by cheque.
+        /// </summary>
+        NUMERAR,
+        /// <summary>
+        /// Programmable pay type 1
+        /// </summary>
+        TICHET,
+        /// <summary>
+        /// Programmable pay type 2
+        /// </summary>
+        TME,
+        /// <summary>
+        /// Programmable pay type 3
+        /// </summary>
+        ABONAMENT,
+        /// <summary>
+        /// Programmable pay type 4
+        /// </summary>
+        ALT_IP,
+        /// <summary>
+        /// Programmable pay type 5
+        /// </summary>
+        CREDIT,
+        /// <summary>
+        /// Programmable pay type 6
+        /// </summary>
+        LEASING,
+        /// <summary>
+        /// Programmable pay type 8.3
+        /// </summary>
+        AVANS,
+        /// <summary>
+        /// Programmable pay type 8.4
+        /// </summary>
+        ARVUNA,
+        /// <summary>
+        /// Programmable pay type 8.5
+        /// </summary>
+        GAJ,
+        /// <summary>
+        /// Programmable pay type 8.6
+        /// </summary>
+        CARDVC,
+        /// <summary>
+        /// Programmable pay type 8.7
+        /// </summary>
+        TESTAREMET,
+        /// <summary>
+        /// Programmable pay type 8.8
+        /// </summary>
+        ALTMOD
     }
 }

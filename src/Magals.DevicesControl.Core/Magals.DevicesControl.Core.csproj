@@ -9,9 +9,9 @@
     <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
     <RepositoryUrl>https://github.com/magals/Magals.DevicesControl</RepositoryUrl>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <FileVersion>1.0.10</FileVersion>
-    <AssemblyVersion>1.0.10</AssemblyVersion>
-    <Version>1.0.10</Version>
+    <FileVersion>1.0.11</FileVersion>
+    <AssemblyVersion>1.0.11</AssemblyVersion>
+    <Version>1.0.11</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
