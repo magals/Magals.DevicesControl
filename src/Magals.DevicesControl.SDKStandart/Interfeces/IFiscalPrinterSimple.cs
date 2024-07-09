@@ -11,7 +11,7 @@ namespace Magals.DevicesControl.SDKStandart.Interfeces
         void Payment(TypePayments paymentType, decimal paymentAmount, bool isServiceReceipt, bool closeReceipt, ulong productCodeFuel = 255);
         WriteSendPackage GetWriteAndSendPackages();
         void PrintXReport();
-
+        void Comment(string text);
         void PrintZReport(bool printpaper = true);
     }
 }

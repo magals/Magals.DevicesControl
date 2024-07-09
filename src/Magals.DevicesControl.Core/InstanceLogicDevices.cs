@@ -416,8 +416,9 @@
 
 		private void MainLogic_LogMessage(object? sender, LoggerEventArgs e)
 		{
-			logger?.Log(e.eventType, "Message:{e.message}{Environment.NewLine}", e.message, Environment.NewLine);
-			if(e.eventType >= LogLevel.Warning)
+			//logger?.Log(e.eventType, "Message:{e.message}{Environment.NewLine}", e.message, Environment.NewLine);
+            logger?.Log(e.eventType, e.message);
+            if (e.eventType >= LogLevel.Warning)
 			{
 				Notify?.Invoke(e);
 			}

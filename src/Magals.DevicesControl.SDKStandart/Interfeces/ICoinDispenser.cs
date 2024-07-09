@@ -13,5 +13,7 @@ namespace Magals.DevicesControl.SDKStandart.Interfeces
         void EmptyStored();
 
         event Action<(int denomination, string currency, int codecurrency)> CoinDispensed;
+
+        event Action<int> OpenCase;
     }
 }

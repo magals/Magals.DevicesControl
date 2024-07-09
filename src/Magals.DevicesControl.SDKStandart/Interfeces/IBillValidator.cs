@@ -6,7 +6,7 @@ namespace Magals.DevicesControl.SDKStandart.Interfeces
 {
     public interface IBillValidator : IDevice
     {
-        void Enable();
+        void Enable(string[] allowedDenomination);
         void Disable();
 
         Dictionary<string, int> GetStatistics();
@@ -16,5 +16,7 @@ namespace Magals.DevicesControl.SDKStandart.Interfeces
         event Action<(int denomination, string currency, int codecurrency)> NoteInEscrow;
         event Action<(int denomination, string currency, int codecurrency)> NoteInStored;
         event Action NoteReject;
+
+        event Action<int> OpenCase;
     }
 }
