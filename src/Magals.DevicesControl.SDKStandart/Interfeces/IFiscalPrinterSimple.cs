@@ -12,6 +12,10 @@ namespace Magals.DevicesControl.SDKStandart.Interfeces
         WriteSendPackage GetWriteAndSendPackages();
         void PrintXReport();
         void Comment(string text);
+       
         void PrintZReport(bool printpaper = true);
+
+        void EnableCut(bool flag);
+        void ServiceComment(string text, bool closeServiceReport);
     }
 }
