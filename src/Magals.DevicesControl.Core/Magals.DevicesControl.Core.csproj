@@ -11,7 +11,7 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <FileVersion>1.0.12</FileVersion>
     <AssemblyVersion>1.0.12</AssemblyVersion>
-    <Version>1.0.16</Version>
+    <Version>1.0.18</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
