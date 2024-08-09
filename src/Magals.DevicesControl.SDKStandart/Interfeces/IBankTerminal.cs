@@ -10,6 +10,7 @@ namespace Magals.DevicesControl.SDKStandart.Interfeces
         void Cancel(long amount);
         void CancelACD(long amount);
         void ZReport();
+        void XReport();
 
         event Action<(BankTerminalCommand command, BankTerminalResultCommand resultCode, object resultObjects, string stringForPrint)> ActionResultCommand;
     }
