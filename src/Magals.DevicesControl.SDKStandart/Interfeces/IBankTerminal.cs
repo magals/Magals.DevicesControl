@@ -13,5 +13,7 @@ namespace Magals.DevicesControl.SDKStandart.Interfeces
         void XReport();
 
         event Action<(BankTerminalCommand command, BankTerminalResultCommand resultCode, object resultObjects, string stringForPrint)> ActionResultCommand;
+        event Action<string> ResultReport;
+
     }
 }
